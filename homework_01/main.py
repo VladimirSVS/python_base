@@ -56,9 +56,9 @@ def filter_numbers(nums, num_type):
     >>> filter_numbers([2, 3, 4, 5], EVEN)
     <<< [2, 4]
     """
-    results = {ODD: [], EVEN: [], PRIME: []}
-    if isinstance(nums,(tuple, list)) and num_type in results.keys():
-        results[EVEN] = list(filter(lambda num: (num % 2) == 0, nums))
-        results[ODD] = list(filter(lambda num: (num % 2) == 1, nums))
-        results[PRIME] = list(filter(lambda num: is_prime(num), nums))
-        return results[num_type]
+    filters = { ODD:{ 'func': lambda num: (num % 2) == 1 },
+                EVEN: { 'func': lambda num: (num % 2) == 0 },
+                PRIME: { 'func': is_prime }
+                }
+    if isinstance(nums,(tuple, list)) and num_type in filters.keys():
+        return list(filter(filters[num_type]['func'], nums))
