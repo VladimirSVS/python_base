@@ -17,25 +17,20 @@ class Vehicle(ABC):
         """Started
         """
         if not started:
-            try:
-                if self.fuel > 0:
-                    self.started = True
-                else:
-                    raise exceptions.LowFuelError
-            except exceptions.LowFuelError:
-                raise
+            if self.fuel > 0:
+                self.started = True
+            else:
+                raise exceptions.LowFuelError
+
 
     def move(self, weight: int):
         """ Move Vehicle
         """
         fuel = self.fuel
         fuel_consumption = self.fuel_consumption
-        try:
-            fuel_required = fuel - weight * fuel_consumption
-            if fuel < fuel_required or fuel_required < 0:
-                self.fuel = 0
-                raise exceptions.NotEnoughFuel
-            else:
-                self.fuel = fuel_required
-        except exceptions.NotEnoughFuel:
-            raise
+        fuel_required = fuel - weight * fuel_consumption
+        if fuel < fuel_required or fuel_required < 0:
+            self.fuel = 0
+            raise exceptions.NotEnoughFuel
+        else:
+            self.fuel = fuel_required

@@ -1,6 +1,7 @@
 from homework_02.base import Vehicle
 from homework_02 import exceptions
 
+
 class Plane(Vehicle):
     """Class Plane
     """
@@ -17,13 +18,10 @@ class Plane(Vehicle):
     def load_cargo(self,num: int):
         """Load cargo
         """
-        try:
-            if num + self.cargo <= self.max_cargo:
-                self.cargo += num
-            else:
-                raise exceptions.CargoOverload
-        except exceptions.CargoOverload:
-            raise
+        if num + self.cargo <= self.max_cargo:
+            self.cargo += num
+        else:
+            raise exceptions.CargoOverload
 
     
     def remove_all_cargo(self):

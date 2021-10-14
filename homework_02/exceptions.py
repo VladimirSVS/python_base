@@ -34,4 +34,3 @@ class CargoOverload(Exception):
     
     def __str__(self):
         return f"CargoOverload, {self.message}"
-
