@@ -8,6 +8,9 @@ dataclasses = "*"
 fastapi = "*"
 uvicorn = "*"
 docker = "*"
+aiohttp = "*"
+sqlalchemy = "*"
+asyncpg = "*"
 
 [requires]
 python_version = "3.9"
