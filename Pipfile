@@ -11,6 +11,8 @@ docker = "*"
 aiohttp = "*"
 sqlalchemy = "*"
 asyncpg = "*"
+flask = "*"
+loremipsum = "*"
 
 [requires]
 python_version = "3.9"
