@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  web_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: web_app
+    container_name: web_app
+    restart: always
+    env_file:
+      - .env # configure postgres
+    environment:
+      FLASK_APP: "main.py"
+      CONFIG: "ProductionConfig"
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
+    ports:
+      - "80:80"
+    depends_on:
+      - pg
+
+  pg:
+    image: postgres
+    container_name: pg
+    restart: always
+    env_file:
+      - .env # configure postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:${PGDATA}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  pg-data:

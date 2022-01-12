@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="mx-auto" style="width: 98%;">
+    <div>
+        <div class="row">
+            <div class="col-2">
+                <h3>{{ title }}</h3>
+            </div>
+        </div>
+        <div>
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <form action="" method="post">
+                {{ form.csrf_token() }}
+                <tr>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            {{ form.name(class="form-control") }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            {{ form.username(class="form-control") }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input-group input-group-sm">
+                            {{ form.email(class="form-control") }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-3 pl-1">
+                                {{ form.submit_save(class="btn btn-primary btn-sm") }}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </form>
+            </tbody>
+            </table>
+        </div>
+        <div>
+            {% for field, errors in form.errors.items() %}
+                <small class="form-text text-muted">
+                    <span style="color: red;"> {{ ', '.join(errors) }} </span>
+                </small>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

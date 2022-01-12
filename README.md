@@ -8,4 +8,5 @@ https://otus.ru/lessons/python-basic/?utm_source=github&utm_medium=free&utm_camp
 - homework_03
 - homework_04
 - homework_05
+- homework_06
 
