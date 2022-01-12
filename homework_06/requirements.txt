@@ -1,0 +1,8 @@
+flask
+loremipsum
+flask_sqlalchemy
+psycopg2-binary
+flask_migrate
+flask-wtf
+email-validator
+Bootstrap-Flask

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+<div class="mx-auto" style="width: 98%;">
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            <h3> {{ title }}</h3>
+        </div>
+        <div class="col-2 pt-1">
+            <a href="{{ url_for('posts_app.add') }}" class="btn btn-primary btn-sm">Add</a>
+        </div>
+    </div>
+    {% for post in posts %}
+    <div class="container">
+        <form action="" method="post">
+        {{ form.csrf_token() }}
+        <div class="row">
+            <div class="col">
+                {{ form.id(value=post.id, readonly=true, type='hidden', class="visually-hidden") }}
+                <p><h5>{{ post.title }}</h5></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>{{ post.body }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ form.submit_delete(class="btn btn-secondary btn-sm") }}
+            </div>
+            <div class="col">
+                {{ form.submit_edit(class="btn btn-secondary btn-sm") }}
+            </div>
+        </div>
+    </form>
+    <div><hr></div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock %}
